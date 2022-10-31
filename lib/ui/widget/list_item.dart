@@ -10,7 +10,6 @@ class ListHome extends StatelessWidget {
   ListHome({
     Key? key,
     required this.title,
-    // required this.function,
   }) : super(key: key);
 
   final String title;
@@ -28,7 +27,6 @@ class ListHome extends StatelessWidget {
             itemBuilder: (context, index) {
               var item = snapshot.data!.articles![index];
               return CardItem(
-                title: title,
                 item: item,
               );
             },

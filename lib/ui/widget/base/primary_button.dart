@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PrimaryButtonText extends StatelessWidget {
-  const PrimaryButtonText({
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
     Key? key,
     required this.onPressed,
     required this.text,
@@ -19,23 +19,28 @@ class PrimaryButtonText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      child: TextButton(
+      child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
           padding: padding == null ? null : MaterialStateProperty.all(padding),
           backgroundColor: MaterialStateProperty.resolveWith<Color>(
             (states) {
               if (states.contains(MaterialState.pressed)) {
-                return Colors.black;
+                return Colors.transparent;
               }
-              return Colors.transparent;
+              return Colors.red;
             },
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ),
         child: Text(
           text,
           style: TextStyle(
-            color: color ?? Colors.white,
+            color: color,
           ),
         ),
       ),

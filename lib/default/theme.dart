@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:maxnews/ui/widget/base/primary_button.dart';
 
 class BaseTheme {
   static Color selectedColor = Colors.white;
@@ -99,5 +101,59 @@ class BaseTheme {
     return const CircularProgressIndicator(
       color: Colors.grey,
     );
+  }
+
+  static Future<dynamic> baseDialog({
+    String? title,
+    String? middleText,
+    Widget? content,
+  }) {
+    return Get.defaultDialog(
+      title: title ?? '',
+      middleText: middleText ?? '',
+      confirm: PrimaryButton(
+        onPressed: () => Get.back(),
+        text: 'Ok',
+      ),
+    );
+  }
+
+  static Future<dynamic> confirmDialog({
+    String? title,
+    String? middleText,
+    Widget? content,
+    Function()? onConfirm,
+  }) {
+    return Get.defaultDialog(
+      title: title ?? '',
+      middleText: middleText ?? '',
+      confirm: Row(
+        children: [
+          Expanded(
+            child: PrimaryButton(
+              margin: marginHorizontal,
+              onPressed: () => Get.back(),
+              text: 'Cancel',
+            ),
+          ),
+          Expanded(
+            child: PrimaryButton(
+              margin: marginHorizontal,
+              onPressed: onConfirm ?? () {},
+              text: 'Ok',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static SnackbarController baseSnackbar(String message) {
+    var snack = GetSnackBar(
+      message: message,
+      duration: const Duration(seconds: 2),
+      backgroundColor: Colors.black,
+    );
+    return Get.showSnackbar(snack);
   }
 }

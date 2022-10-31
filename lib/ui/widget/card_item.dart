@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maxnews/models/news.dart';
+import 'package:maxnews/ui/page/webview_news.dart';
 
 import '../../default/theme.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({
     Key? key,
-    required this.title,
     required this.item,
   }) : super(key: key);
-  final String title;
   final Articles item;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(
+          WebviewNews(url: item.url ?? ''),
+        );
+      },
       child: Container(
         padding: BaseTheme.marginAll,
         child: Stack(

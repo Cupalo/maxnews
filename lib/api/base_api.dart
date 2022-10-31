@@ -14,6 +14,7 @@ class BaseApi {
   static var nationalNewsApi = '?country=id';
   static var internationalNewsApi = '?country=us';
   static var businessNewsApi = '?category=business&country=id';
+  static var searchNewsApi = '?q=';
 
   static String nationalTitle = 'National';
   static String internationalTitle = 'International';
@@ -27,7 +28,7 @@ class BaseApi {
     } else if (content == businessTitle) {
       return businessNewsApi;
     } else {
-      return '';
+      return searchNewsApi + content;
     }
   }
 
